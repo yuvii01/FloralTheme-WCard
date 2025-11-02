@@ -487,19 +487,89 @@ a.mapLink:hover, button.btn:hover {
 <script>
 /* ---------- Enchanted Audio + Haptics ---------- */
 let audioCtx = null;
-function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-function playClick(){
-  try{
-    ensureAudio();
-    if(audioCtx.state === 'suspended') audioCtx.resume();
-    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-    o.type='sine'; o.frequency.value=580; o.connect(g); g.connect(audioCtx.destination);
+let pendingClicks = 0; // number of click sounds requested before gesture
+
+// Low-level function that actually creates & plays the oscillator click.
+// Call only when audioCtx exists and is ready.
+function _doClick() {
+  try {
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.value = 580;
+    o.connect(g);
+    g.connect(audioCtx.destination);
+
     const now = audioCtx.currentTime;
-    g.gain.setValueAtTime(0.00001, now); g.gain.exponentialRampToValueAtTime(0.07, now+0.01);
-    o.start(now); g.gain.exponentialRampToValueAtTime(0.00001, now+0.18); o.stop(now+0.2);
-  }catch(e){}
-  
+    g.gain.setValueAtTime(0.00001, now);
+    g.gain.exponentialRampToValueAtTime(0.07, now + 0.01);
+    o.start(now);
+    g.gain.exponentialRampToValueAtTime(0.00001, now + 0.18);
+    o.stop(now + 0.2);
+  } catch (e) {
+    // swallow errors silently
+  }
 }
+
+// Create/resume AudioContext — must only be called inside a user gesture.
+function initAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  // If suspended, resume returns a promise
+  if (audioCtx.state === 'suspended') {
+    return audioCtx.resume();
+  }
+  return Promise.resolve();
+}
+
+// Attach one-time gesture listeners that will initialize audio and play pending clicks.
+// It's safe to call attachInitOnGesture() multiple times; the first gesture wins.
+function attachInitOnGesture() {
+  const gestureHandler = () => {
+    initAudioContext()
+      .then(() => {
+        // Play any queued clicks
+        while (pendingClicks > 0) {
+          pendingClicks--;
+          _doClick();
+        }
+      })
+      .catch(() => {
+        // if resume/creation still fails, drop queued clicks
+        pendingClicks = 0;
+      });
+  };
+
+  // Use { once: true } so each listener removes itself after firing.
+  document.addEventListener('click', gestureHandler, { once: true, passive: true });
+  document.addEventListener('touchstart', gestureHandler, { once: true, passive: true });
+  document.addEventListener('keydown', gestureHandler, { once: true, passive: true });
+}
+
+// Public function: play the click sound
+function playClick() {
+  // If audio context already exists and isn't suspended, play immediately
+  if (audioCtx && audioCtx.state === 'running') {
+    _doClick();
+    return;
+  }
+
+  // If audioCtx exists but suspended, attempt to resume (but resume must happen on gesture)
+  if (audioCtx && audioCtx.state === 'suspended') {
+    // We can't call resume() here unless this function is called in a user gesture.
+    // So queue the click and attach gesture initializer to resume+play on next gesture.
+    pendingClicks++;
+    attachInitOnGesture();
+    return;
+  }
+
+  // audioCtx doesn't exist yet — queue the click and attach gesture initializer.
+  pendingClicks++;
+  attachInitOnGesture();
+}
+
+
 function playSuccess(){
   try{
     ensureAudio(); if(audioCtx.state === 'suspended') audioCtx.resume();
@@ -520,9 +590,61 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Garden stirs—DOM ready! 🌸');
   /* ---------- Autoplay Music ---------- */
   const bgMusic = document.getElementById('bgMusic');
-  if(bgMusic) {
-    bgMusic.play().catch(e => console.log('Autoplay prevented:', e));
-  }
+const musicBtn = document.getElementById('musicBtn');
+
+// Try autoplay first
+if (bgMusic) {
+  bgMusic.play().then(() => {
+    console.log('Autoplay succeeded');
+    if (musicBtn) musicBtn.classList.add('playing');
+  }).catch(err => {
+    console.log('Autoplay prevented, waiting for user interaction...', err);
+
+    // Wait for the first user gesture (click/touch/key)
+    const resumeAudio = () => {
+      bgMusic.play().then(() => {
+        console.log('Music started after user interaction');
+        if (musicBtn) musicBtn.classList.add('playing');
+      }).catch(e => console.log('Still blocked:', e));
+
+      // Remove listeners after the first trigger
+      document.removeEventListener('click', resumeAudio);
+      document.removeEventListener('touchstart', resumeAudio);
+      document.removeEventListener('keydown', resumeAudio);
+    };
+
+    document.addEventListener('click', resumeAudio);
+    document.addEventListener('touchstart', resumeAudio);
+    document.addEventListener('keydown', resumeAudio);
+  });
+}
+
+// Music toggle button logic
+if (musicBtn && bgMusic) {
+  musicBtn.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(() => {});
+      musicBtn.classList.add('playing');
+      musicBtn.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <polyline points="6,18 9,12 6,6" stroke="currentColor" stroke-width="2" fill="none"/>
+          <polyline points="15,18 18,12 15,6" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>`;
+    } else {
+      bgMusic.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>`;
+    }
+
+    // Optional: play click sound (ensure playClick() is safe)
+    if (typeof playClick === 'function') playClick();
+  });
+}
+
+
   /* ---------- Hearts: Petals of the heart rising like morning mist ---------- */
   (function initHearts(){
     const canvas = document.getElementById('heartsCanvas');
@@ -1033,21 +1155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
   }
   /* ---------- Music's Whisper ---------- */
-  const musicBtn = document.getElementById('musicBtn');
-  if(musicBtn && bgMusic){
-    musicBtn.addEventListener('click', () => {
-      if(bgMusic.paused) {
-        bgMusic.play().catch(e => {});
-        musicBtn.classList.add('playing');
-        musicBtn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="6,18 9,12 6,6" stroke="currentColor" stroke-width="2" fill="none"/><polyline points="15,18 18,12 15,6" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
-      } else {
-        bgMusic.pause();
-        musicBtn.classList.remove('playing');
-        musicBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
-      }
-      playClick();
-    });
-  }
+  
   /* ---------- card data and interactions ---------- */
   const eventData = {
   haldi: {
