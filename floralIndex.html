@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rajat weds Kanika — Enchanted Garden Invite</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --gold:#ffd76b;
+    --accent:#eca3c2;
+    --rose:#ff8ab2;
+    --blush:#ffd1e6;
+    --emerald:#a8d5ba;
+    --ivory:#fffdf4;
+    --glass: rgba(255,255,255,0.05);
+    --shadow-soft: 0 8px 32px rgba(0,0,0,0.06);
+    --shadow-glow: 0 0 40px rgba(255,215,107,0.15);
+  }
+  /* Enchanted garden backdrop: soft mustard-to-ivory gradient with subtle vine patterns */
+  html,body{height:100%;margin:0;padding:0;font-family:'Dancing Script', 'Great Vibes', cursive, system-ui, Arial;color:#2b2b2b;overflow:hidden}
+  body{
+    background:
+  /* A bright, soft peach */
+  radial-gradient(ellipse at 20% 20%, #FFCBA4 0%, transparent 50%),
+  /* A clear, light lavender/thistle */
+  radial-gradient(ellipse at 80% 80%, #D8BFD8 0%, transparent 50%),
+  /* A clean base: White -> Lavender Blush -> Misty Rose */
+  linear-gradient(135deg, #FFFFFF 0%, #FFF0F5 40%, #FFE4E1 100%);
+  position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a8d5ba' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L0 50L50 100L100 50Z' fill='%23ffd1e6' fill-opacity='0.02'/%3E%3C/svg%3E");
+    background-size: 60px 60px, 100px 100px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Cherry blossom trees: Gentle sentinels in the enchanted garden */
+  .trees {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .tree {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 250px;
+    animation: treeSway 8s ease-in-out infinite alternate;
+  }
+  .tree:nth-child(1) { left: 5%; }
+  .tree:nth-child(2) { left: 25%; transform: scale(0.85) translateY(20px); }
+  .tree:nth-child(3) { left: 75%; }
+  .tree:nth-child(4) { left: 90%; transform: scale(0.75) translateY(40px); }
+  .trunk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 100px;
+    background: linear-gradient(to top, #654321, #8B4513);
+    border-radius: 6px 6px 0 0;
+  }
+  .canopy {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(ellipse at 30% 20%, var(--blush) 0%, var(--rose) 30%, transparent 60%);
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+
+  a.mapLink, button.btn, input, textarea, label {
+  cursor: pointer !important;  /* Override any card cursor */
+  position: relative;  /* For potential z-index tweaks */
+  z-index: 2;  /* Ensure they sit above the card */
+}
+
+/* Prevent flip on hover for interactive */
+a.mapLink:hover, button.btn:hover {
+  transform: none !important;  /* No card hover interference */
+}
+
+  .canopy::before,
+  .canopy::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: var(--blush);
+    opacity: 0.7;
+  }
+  .canopy::before {
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    left: 10px;
+    box-shadow: 0 0 10px rgba(255, 138, 178, 0.3);
+  }
+  .canopy::after {
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: 5px;
+    box-shadow: 0 0 8px rgba(255, 138, 178, 0.3);
+  }
+  @keyframes treeSway {
+    0% { transform: rotate(-0.3deg); }
+    100% { transform: rotate(0.3deg); }
+  }
+  .overlay{ position:fixed; inset:0; pointer-events:none; z-index:2; }
+  /* Ethereal clouds drifting lazily */
+  .clouds { position:fixed; left:0; right:0; top:2vh; height:25vh; pointer-events:none; z-index:3; }
+  .cloud {
+    position:absolute; top:0; height:15vh;
+    background:
+      radial-gradient(50% 70% at 30% 40%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.0) 70%),
+      radial-gradient(40% 60% at 70% 60%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.0) 70%),
+      linear-gradient(180deg, rgba(255,248,220,0.98), rgba(243,226,154,0.95));
+    filter: blur(12px) saturate(1.02);
+    border-radius:60% 40% 30% 70%/60% 30% 70% 40%;
+    opacity:0.96;
+    transform: translateY(0) scale(1);
+    animation: cloudDrift 25s ease-in-out infinite, cloudSway 8s ease-in-out infinite alternate;
+  }
+  .cloud:nth-child(1){ left:5%; width:40vw; animation-delay: 0s, 2s; }
+  .cloud:nth-child(2){ left:30%; width:30vw; top:4vh; animation-delay: 8s, 5s; opacity:0.93; }
+  .cloud:nth-child(3){ left:65%; width:38vw; top:2vh; animation-delay: 15s, 0s; opacity:0.95; }
+  @keyframes cloudDrift {
+    0%{ transform: translateX(-5vw) scale(1); }
+    50%{ transform: translateX(10vw) scale(1.02); }
+    100%{ transform: translateX(5vw) scale(1); }
+  }
+  @keyframes cloudSway { 0%{ transform: translateY(0) scale(1); } 100%{ transform: translateY(-2px) scale(1.01); } }
+  /* Fireflies for enchanted night vibe (subtle glows) */
+  .fireflies { position:fixed; inset:0; pointer-events:none; z-index:5; }
+  .firefly { position:absolute; width:4px; height:4px; background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, transparent 70%); border-radius:50%; opacity:0; animation: fireflyFloat 4s ease-in-out infinite; }
+  @keyframes fireflyFloat {
+    0%, 100%{ opacity:0.3; transform: translateY(0) scale(1); }
+    50%{ opacity:0.9; transform: translateY(-10px) scale(1.2); }
+  }
+  /* Hearts canvas: soft, poetic rising hearts */
+  canvas#heartsCanvas{ position:fixed; inset:0; z-index:7; pointer-events:none; }
+  .music-control{
+    position:fixed; right:16px; top:16px; z-index:120;
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+    border:2px solid rgba(0,0,0,0.04);
+    box-shadow:var(--shadow-soft), var(--shadow-glow);
+    cursor:pointer;
+    transition: all .2s cubic-bezier(.25,.8,.25,1);
+  }
+  .music-control svg{ width:24px; height:24px; fill:var(--gold); stroke:#fff; stroke-width:1; }
+  .music-control:active{ transform: scale(.94) rotate(5deg); }
+  .music-control.playing{
+    box-shadow: var(--shadow-soft), 0 0 50px rgba(255,215,0,0.2);
+    transform: scale(1.05) rotate(-5deg);
+    background: linear-gradient(135deg, rgba(255,215,107,0.2), rgba(255,255,255,0.95));
+  }
+  /* Petal canvas: enchanted falling petals with gentle wind */
+  canvas#petalCanvas{ position:fixed; inset:0; z-index:4; pointer-events:none; }
+  /* Small animated flower (SMA) - now a cluster of peonies */
+  .sma-flower {
+    position:fixed; left:10vw; top:20vh; width:100px; height:100px; z-index:8;
+    pointer-events:auto; display:flex; align-items:center; justify-content:center;
+    filter: drop-shadow(var(--shadow-soft));
+  }
+  .sma-flower svg{ width:100%; height:100%; transform-origin:center center; animation: flowerBloom 6s ease-in-out infinite; }
+  @keyframes flowerBloom {
+    0%{ transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+    25%{ transform: translateY(-8px) rotate(-3deg) scale(1.04); opacity: 1; }
+    50%{ transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
+    75%{ transform: translateY(-6px) rotate(3deg) scale(1.03); opacity: 1; }
+    100%{ transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+  }
+  /* Intro stage: poetic welcome */
+  .introStage{
+    position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:20;
+    display:flex; flex-direction:column; align-items:center; gap:16px; pointer-events:auto;
+    text-shadow: 0 4px 16px rgba(255,215,107,0.3);
+  }
+  #flowerCanvas{ width:240px; height:240px; display:block; cursor:pointer; touch-action:manipulation; border-radius:50%; box-shadow: var(--shadow-glow), var(--shadow-soft); transform-origin: center center; }
+  .introLabel{
+    font-family:'Great Vibes',cursive; font-size:24px; color:var(--gold);
+    text-align:center; line-height:1.2; letter-spacing:1px;
+  }
+  .introPoem {
+    font-family:'Dancing Script', cursive; font-size:16px; color:var(--accent);
+    text-align:center; max-width:280px; opacity:0.9; margin-top:4px;
+  }
+  /* Couple silhouettes: romantic, with gentle sway */
+  .coupleWrap{
+    position:fixed; left:50%; top:45%; transform:translate(-50%,-50%); z-index:21;
+    display:flex; gap:30px; align-items:flex-end; pointer-events:none; opacity:0;
+    animation: coupleReveal 1.2s ease-out forwards;
+  }
+  @keyframes coupleReveal { to { opacity:1; } }
+  .silhouette{
+     overflow: hidden; position: relative; top: 0;
+     width:220px; height:270px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    color:#2b2b2b; font-weight:700; font-size:13px; font-family:'Dancing Script', cursive;
+    opacity:0; transform:translateY(30px); transition:all .8s cubic-bezier(.34,.95,.7,1);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .silhouette img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* maintains aspect ratio, fills container */
+  display: block;
+}
+  .sil-groom{ background:linear-gradient(145deg, #ffd6a8, #f5b76a); animation: groomSway 4s ease-in-out infinite; }
+  .sil-bride{ background:linear-gradient(145deg, #ffdfe9, #ffbcd1); animation: brideSway 4s ease-in-out infinite reverse; }
+  @keyframes groomSway { 0%,100%{ transform: translateY(0) rotate(-1deg); } 50%{ transform: translateY(-3px) rotate(1deg); } }
+  @keyframes brideSway { 0%,100%{ transform: translateY(0) rotate(1deg); } 50%{ transform: translateY(-3px) rotate(-1deg); } }
+  .toss{
+    position:fixed; width:48px; height:48px;
+    background: radial-gradient(circle at 30% 30%, var(--rose) 0%, var(--blush) 70%);
+    border-radius:50%; z-index:22; transform:translate(-50%,-50%); pointer-events:none; opacity:0;
+    box-shadow: 0 4px 12px rgba(255,138,178,0.4);
+    animation: tossGlow 0.8s ease-out forwards;
+  }
+  @keyframes tossGlow { to { box-shadow: 0 0 20px rgba(255,138,178,0.6); } }
+  /* Main cards: elegant, floral-framed flippable invites */
+  .cardsArea{
+    position:fixed; left:50%; top:54%; transform:translate(-50%,-54%); z-index:28;
+    width:90vw; max-width:1000px; height:78vh; pointer-events:none; opacity:0;
+    display:flex; gap:24px; justify-content:center; align-items:flex-start;
+    transition: opacity 0.8s ease-out;
+  }
+
+  .cardFace.back{
+  
+ background: linear-gradient(120deg, #a8d5ba 0%, #fffdf4 70%, #eca3c2 100%);
+  align-items:center; justify-content:center; padding:18px; 
+}
+
+
+.back .rsvpBox {
+  
+  width:100%; max-width:380px; margin:0 auto; text-align:left;
+  display:flex; flex-direction:column; gap:10px;
+}
+  .cardsArea.visible{ pointer-events:auto; opacity:1; }
+  .cardShell{
+    width:380px; max-width:42vw; height:72vh; perspective:1800px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cardInner{
+    width:100%; height:100%; border-radius:24px;
+    background: linear-gradient(135deg, var(--ivory) 0%, #fff9e6 100%);
+    transform-style:preserve-3d; transition:transform 1s cubic-bezier(.34,.95,.7,1);
+    box-shadow: var(--shadow-glow), var(--shadow-soft);
+    border:3px solid rgba(255,215,107,0.3); overflow:hidden; position:relative;
+    position: relative;
+  }
+  .cardInner::before {
+    content: ''; position: absolute; inset: -2px; border-radius: 26px;
+    background: linear-gradient(45deg, var(--gold), var(--blush), var(--emerald), var(--gold));
+    background-size: 400% 400%; animation: cardAura 4s ease infinite;
+    z-index: -1; opacity: 0.1;
+  }
+  @keyframes cardAura { 0%,100%{ background-position: 0% 50%; } 50%{ background-position: 100% 50%; } }
+  .cardFace{
+    position:absolute; inset:0; padding:24px; backface-visibility:hidden;
+    -webkit-backface-visibility:hidden; display:flex; flex-direction:column; gap:16px;
+    background: rgba(255,255,255,0.6); border-radius:20px;
+  }
+  .cardFace.front{ transform:rotateY(0deg); }
+ 
+  .is-flipped{ transform:rotateY(180deg); }
+  .heroImg{
+    width:100%; height:40%; object-fit:cover; border-radius:16px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border: 2px solid rgba(255,215,107,0.2);
+  }
+  .title{
+    font-family:'Great Vibes',cursive; font-size:32px; color:var(--gold);
+    text-align:center; margin:0; letter-spacing:1px; text-shadow: 0 2px 8px rgba(255,215,107,0.3);
+  }
+  .subtitle{
+    font-family:'Dancing Script',cursive; font-size:20px; color:var(--accent);
+    text-align:center; margin:0; font-weight:700;
+  }
+  .desc{
+    color:#3a3a3a; font-size:1rem; text-align:center;
+    background:var(--glass); padding:16px; border-radius:16px; flex:1; overflow:auto;
+    font-family:'Dancing Script', cursive; line-height:1.4; font-weight:400;
+    border-left: 4px solid var(--blush);
+  }
+  .rsvpBox input,.rsvpBox textarea {
+    padding:12px; border-radius:12px; border:2px solid rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.98); color:#222; font-family:'Dancing Script', cursive;
+    transition: border-color 0.3s ease;
+  }
+  .rsvpBox input:focus, .rsvpBox textarea:focus { border-color: var(--gold); outline: none; }
+  .btn {
+    background:linear-gradient(135deg, var(--gold), var(--blush)); color:#2b2b2b;
+    padding:12px 16px; border-radius:16px; border:none; font-weight:700; cursor:pointer;
+    font-family:'Dancing Script', cursive; font-size:16px; transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+  .mapLink{
+    display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px;
+    background:rgba(168,213,186,0.1); text-decoration:none; color:#2b2b2b;
+    border:2px solid rgba(168,213,186,0.2); font-family:'Dancing Script', cursive;
+    transition: all 0.3s ease;
+  }
+  .mapLink:hover { background: var(--emerald); color: #fff; }
+  /* Menu bar: floral icons with hover bloom */
+  .menuBar{
+    position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:30;
+    display:flex; gap:12px; align-items:center; padding:12px; border-radius:20px;
+    background:rgba(255,255,255,0.8); backdrop-filter: blur(20px); box-shadow: var(--shadow-soft);
+  }
+  .menuItem{
+    width:80px; height:90px; background:rgba(255,255,255,0.95); border-radius:16px;
+    padding:8px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px; cursor:pointer; border:2px solid rgba(0,0,0,0.03); transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .menuItem::after {
+    content: ''; position: absolute; inset: 0; background: radial-gradient(circle, var(--gold) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s;
+  }
+  .menuItem:hover { transform: translateY(-4px) scale(1.05); border-color: var(--gold); box-shadow: var(--shadow-glow); }
+  .menuItem:hover::after { opacity: 0.1; }
+  .menuItem img{ width:100%; height:58%; object-fit:cover; border-radius:12px; }
+  .menuItem span{ font-size:13px; color:#333; font-family:'Dancing Script', cursive; font-weight:600; }
+  .footerNote{
+    position:fixed; left:16px; bottom:16px; color:rgba(0,0,0,0.6); font-size:13px;
+    z-index:35; font-family:'Great Vibes', cursive; font-style: italic;
+  }
+  @media (max-width: 720px) {
+  .cardsArea {
+    flex-direction: column;
+    align-items: center;
+    top: 58%;
+    transform: translate(-50%, -58%);
+    gap: 12px; /* Reduced gap for tighter fit */
+    width: 95vw; /* Full width */
+  }
+  .cardShell {
+    width: 92vw;
+    height: 65vh; /* Slightly shorter for better fit */
+    max-width: none; /* Override desktop max-width */
+  }
+  /* NEW: Optimized Vertical Menu for Mobile */
+  .cardsArea > div:last-child { /* The menu column */
+    display: flex;
+    flex-direction: row; /* Horizontal scroll instead of vertical */
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-left: 0;
+    align-self: center;
+    width: 92vw;
+    overflow-x: auto; /* Horizontal scroll */
+    padding: 8px 0;
+    scrollbar-width: none; /* Hide scrollbar */
+    -ms-overflow-style: none;
+  }
+  .cardsArea > div:last-child::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome */
+  }
+  .menuItem {
+    flex: 0 0 120px; /* Fixed width for perfect fit */
+    height: 100px; /* Slightly shorter */
+    min-width: 120px;
+  }
+  .menuItem img {
+    height: 65%; /* More space for text */
+  }
+  .menuItem span {
+    font-size: 11px; /* Smaller text */
+    white-space: nowrap;
+  }
+  #flowerCanvas { width: 200px; height: 200px; }
+  .sma-flower { left: 6vw; top: 12vh; width: 80px; height: 80px; }
+  .menuBar { flex-wrap: wrap; justify-content: center; bottom: 16px; padding: 16px; }
+  .trees { height: 30vh; }
+  .tree { height: 180px; }
+  .trunk { height: 70px; }
+  .canopy { bottom: 70px; width: 100px; height: 100px; }
+}
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important }
+    .cloud, .firefly, .sma-flower, .silhouette, .tree { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <!-- Cherry blossom trees backdrop -->
+   <div style="position: relative; bottom:-600px">
+    <img src="/cherry_blossom3.webp" alt="">
+   </div>
+   <div class="trees" aria-hidden="true"></div>
+  <audio id="bgMusic" src="floralromantic.mp3" loop preload="auto" autoplay></audio>
+  <!-- Ethereal clouds -->
+  <div class="clouds" aria-hidden="true">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+  </div>
+  <!-- Fireflies -->
+  <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+  <!-- Hearts canvas: whispers of love rising -->
+  <canvas id="heartsCanvas" aria-hidden="true"></canvas>
+  <!-- Petals: enchanted breeze carrying dreams -->
+  <canvas id="petalCanvas" aria-hidden="true"></canvas>
+  <!-- Cluster of small animated peonies -->
+  <!-- Intro: the awakening flower -->
+  <div class="introStage" id="introStage" role="region" aria-label="The garden awakens">
+    <canvas id="flowerCanvas" width="480" height="480" aria-hidden="false" role="img"></canvas>
+  
+    <div class="introLabel">Rajat weds Kanika</div>
+    <div class="introPoem">In whispers of petals and moonlight's gentle kiss, two souls entwine in eternal bliss.</div>
+  </div>
+  <!-- couple silhouettes and toss object -->
+  <div class="coupleWrap" id="coupleWrap">
+    <div class="silhouette sil-groom" id="silG">
+      <img  src="" alt="">
+    </div>
+    <div class="silhouette sil-bride" id="silB">
+      <img src="" alt="">
+    </div>
+  </div>
+  <div class="toss" id="toss" style="display: none;"></div>
+  <!-- cards area (revealed after intro) -->
+  <div class="cardsArea" id="cardsArea" aria-hidden="true">
+    <div class="cardShell">
+      <div class="cardInner" id="cardInner">
+        <div class="cardFace front" id="cardFront">
+          <img id="heroImg" class="heroImg" src="" alt="event image">
+          <h2 class="title" id="cardTitle">Rajat weds Kanika</h2>
+          <h3 class="subtitle" id="cardSubtitle">A Sacred Rite</h3>
+          <div class="desc" id="cardDesc">Where petals fall like forgotten promises, and love blooms eternal in the heart's quiet garden.</div>
+          <div style="text-align:center;margin-top:12px"><small style="opacity:0.8;font-style:italic">Whisper your vow — turn the page</small></div>
+        </div>
+        <div class="cardFace back" id="cardBack" >
+          <div class="rsvpBox" style="transform: rotateY(180deg);" >
+            <div style="text-align:center;font-family:'Great Vibes',cursive;font-size:22px;color:var(--gold)">Will You Join Our Bloom?</div>
+            <div id="backEvent" style="font-weight:700;color:var(--accent);text-align:center;font-family:'Dancing Script',cursive;font-size:16px"></div>
+            <input id="rname" placeholder="Your name, dear one"/>
+            <div style="display:flex;gap:12px;justify-content:center">
+              <label style="display:flex;align-items:center;gap:4px"><input type="radio" name="attend" value="yes" checked/> With joy, yes</label>
+              <label style="display:flex;align-items:center;gap:4px"><input type="radio" name="attend" value="no"/> From afar, no</label>
+            </div>
+            <input id="rguests" type="number" min="0" value="0" placeholder="Hearts accompanying (0 if solo)"/>
+            <textarea id="rmsg" placeholder="A petal of blessing or whispered verse (optional)"></textarea>
+            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+              <button style="position: relative; z-index: 1000000000000000000;" id="mapLink" class="mapLink" target="_blank" rel="noopener">🌿 Journey to the Garden</button>
+              <button id="rsvpBtn" class="btn">Seal with Petals</button>
+            </div>
+            <div id="rsvpStatus" style="height:20px;color:#2a5d2a;text-align:center;font-style:italic"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:row;gap:12px;margin-left:16px;align-self:flex-start;flex:1">
+      <div style="display:flex;flex-direction:row;gap:10px">
+        <div class="menuItem" data-key="haldi"><img src="" alt="Haldi glow"><span>Haldi</span></div>
+        <div class="menuItem" data-key="mehandi"><img src="" alt="Mehandi artistry"><span>Mehandi</span></div>
+        <div class="menuItem" data-key="bhat"><img src="" alt="Bhat blessings"><span>Bhat</span></div>
+        <div class="menuItem" data-key="sangeet"><img src="" alt="Sangeet symphony"><span>Sangeet</span></div>
+        <div class="menuItem" data-key="wedding"><img src="" alt="Wedding vows"><span>Wedding</span></div>
+        <div class="menuItem" data-key="reception"><img src="" alt="Reception revelry"><span>Reception</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footerNote">Enchanted Garden — Where Dreams Petal into Forever</div>
+<script>
+/* ---------- Enchanted Audio + Haptics ---------- */
+let audioCtx = null;
+function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+function playClick(){
+  try{
+    ensureAudio();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+    o.type='sine'; o.frequency.value=580; o.connect(g); g.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+    g.gain.setValueAtTime(0.00001, now); g.gain.exponentialRampToValueAtTime(0.07, now+0.01);
+    o.start(now); g.gain.exponentialRampToValueAtTime(0.00001, now+0.18); o.stop(now+0.2);
+  }catch(e){}
+  
+}
+function playSuccess(){
+  try{
+    ensureAudio(); if(audioCtx.state === 'suspended') audioCtx.resume();
+    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+    o.type='triangle'; o.frequency.value=760; o.connect(g); g.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+    g.gain.setValueAtTime(0.00001, now); g.gain.exponentialRampToValueAtTime(0.09, now + 0.03);
+    o.start(now); o.frequency.exponentialRampToValueAtTime(1240, now+0.28);
+    g.gain.exponentialRampToValueAtTime(0.00001, now+0.35); o.stop(now+0.38);
+  }catch(e){}
+  if(navigator.vibrate) navigator.vibrate([20,15,20]);
+}
+/* ---------- Poetic Helpers ---------- */
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function easeInOutCubic(t){ return t<.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1; }
+/* ---------- Initialize everything once DOM is ready ---------- */
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Garden stirs—DOM ready! 🌸');
+  /* ---------- Autoplay Music ---------- */
+  const bgMusic = document.getElementById('bgMusic');
+  if(bgMusic) {
+    bgMusic.play().catch(e => console.log('Autoplay prevented:', e));
+  }
+  /* ---------- Hearts: Petals of the heart rising like morning mist ---------- */
+  (function initHearts(){
+    const canvas = document.getElementById('heartsCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let DPR = window.devicePixelRatio || 1;
+    function resize(){ DPR = window.devicePixelRatio || 1; canvas.width = Math.floor(window.innerWidth * DPR); canvas.height = Math.floor(window.innerHeight * DPR); canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; ctx.setTransform(DPR,0,0,DPR,0,0); }
+    window.addEventListener('resize', resize); resize();
+    const hearts = [];
+    function createHeart(){
+      const size = rand(10,25);
+      return {
+        x: rand(30, window.innerWidth-30),
+        y: window.innerHeight + rand(20, 100),
+        vx: rand(-0.4, 0.4),
+        vy: -rand(0.8, 2.2),
+        size, rot: rand(0, Math.PI*2), spin: rand(-0.015, 0.015),
+        alpha: 0, life: 0,
+        color: `rgba(${Math.round(255)},${Math.round(192+rand(0,63))},${Math.round(203+rand(0,52))},`
+      };
+    }
+    function drawHeartPath(ctx, s){
+      ctx.beginPath();
+      ctx.moveTo(0, -s*0.35);
+      ctx.bezierCurveTo(s*0.4, -s*0.8, s*1.3, -s*0.15, 0, s*1.2);
+      ctx.bezierCurveTo(-s*1.3, -s*0.15, -s*0.4, -s*0.8, 0, -s*0.35);
+      ctx.closePath();
+    }
+    let anim = null;
+    function step(){
+      ctx.clearRect(0,0,canvas.width/DPR, canvas.height/DPR);
+      if(hearts.length < 35 && Math.random() > 0.55) hearts.push(createHeart());
+      for(let i = hearts.length-1; i >= 0; i--){
+        const h = hearts[i];
+        h.x += h.vx + Math.sin(h.life * 0.05) * 0.5;
+        h.y += h.vy;
+        h.rot += h.spin;
+        h.life += 1;
+        if(h.life < 15) h.alpha = Math.min(1, h.life/15);
+        else if(h.y < -100) h.alpha = Math.max(0, h.alpha - 0.015);
+        ctx.save();
+        ctx.translate(h.x, h.y);
+        ctx.rotate(h.rot);
+        ctx.globalAlpha = h.alpha;
+        const gradient = ctx.createLinearGradient(0, -h.size, 0, h.size);
+        gradient.addColorStop(0, h.color + '1)');
+        gradient.addColorStop(1, h.color + '0.4)');
+        ctx.fillStyle = gradient;
+        drawHeartPath(ctx, h.size*0.2);
+        ctx.fill();
+        ctx.restore();
+        if(h.alpha <= 0.01 || h.y < -150) hearts.splice(i,1);
+      }
+      anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  })();
+  /* ---------- Petals: Enchanted breeze with floral whispers ---------- */
+  const petalCanvas = document.getElementById('petalCanvas');
+  let startPetals = null; // Forward declare for later calls
+  if(petalCanvas){
+    const pctx = petalCanvas.getContext('2d');
+    let petDPR = window.devicePixelRatio || 1;
+    function resizePetal(){ petDPR = window.devicePixelRatio || 1; petalCanvas.width = Math.floor(window.innerWidth * petDPR); petalCanvas.height = Math.floor(window.innerHeight * petDPR); petalCanvas.style.width = window.innerWidth + 'px'; petalCanvas.style.height = window.innerHeight + 'px'; pctx.setTransform(petDPR,0,0,petDPR,0,0); }
+    window.addEventListener('resize', resizePetal); resizePetal();
+    let petals = [], petAnim = null, petFadeStart = null;
+    const petalShapes = ['rose', 'leaf', 'blossom'];
+    function makePetal(){
+      const colors = ['#ffd76b', '#ffb3d1', '#ffd7b8', '#fff0f6', '#ffd1e6', '#a8d5ba', '#ff8ab2'];
+      const shape = petalShapes[Math.floor(Math.random() * petalShapes.length)];
+      return {
+        x: rand(0,innerWidth), y: rand(-innerHeight,0),
+        vx: rand(-0.8,0.8), vy: rand(0.8,2.5),
+        size: rand(8,20), color: colors[Math.floor(Math.random()*colors.length)],
+        rot: rand(0,Math.PI*2), spin: rand(-0.05,0.05), shape
+      };
+    }
+    function drawPetal(ctx, p) {
+      ctx.save(); ctx.rotate(p.rot); ctx.globalAlpha = 0.92;
+      if(p.shape === 'leaf'){
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.ellipse(0,0, p.size*0.3, p.size, Math.PI/4, 0, Math.PI*2);
+        ctx.fill();
+      } else if(p.shape === 'blossom'){
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        for(let i=0; i<5; i++){
+          ctx.lineTo(0, -p.size); ctx.rotate(Math.PI*2/5);
+        }
+        ctx.closePath(); ctx.fill();
+      } else {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.ellipse(0,0,p.size*0.7,p.size*1.5,0,0,Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+    function initPetals(n){ petals=[]; for(let i=0;i<n;i++) petals.push(makePetal()); }
+    function drawPetals(ts){
+      pctx.clearRect(0,0,petalCanvas.width/petDPR,petalCanvas.height/petDPR);
+      let alphaMul = 1;
+      if(petFadeStart){ const elapsed = ts - petFadeStart; alphaMul = 1 - Math.min(1, elapsed/15000); }
+      for(let p of petals){
+        p.x += p.vx + Math.sin(p.y * 0.001) * 0.3;
+        p.y += p.vy; p.rot += p.spin;
+        if(p.x < -60) p.x = innerWidth + 60;
+        if(p.x > innerWidth + 60) p.x = -60;
+        if(p.y > innerHeight + 100){
+          if(!petFadeStart){ p.y = rand(-innerHeight,-30); p.x = rand(0,innerWidth); p.vy = rand(0.8,2.5); }
+          else { p.y = innerHeight + 250; }
+        }
+        pctx.save(); pctx.translate(p.x,p.y);
+        pctx.globalAlpha = 0.95*alphaMul;
+        drawPetal(pctx, p);
+        pctx.restore();
+      }
+      if(alphaMul <= 0.01){ cancelAnimationFrame(petAnim); petAnim=null; petals=[]; pctx.clearRect(0,0,petalCanvas.width/petDPR,petalCanvas.height/petDPR); return; }
+      petAnim = requestAnimationFrame(drawPetals);
+    }
+    startPetals = function(){ if(petAnim) return; petFadeStart=null; const base = innerWidth < 420 ? 50 : (innerWidth < 900 ? 90 : 140); initPetals(base); petAnim = requestAnimationFrame(drawPetals); setTimeout(()=>{ petFadeStart = performance.now(); },12000); };
+    setTimeout(startPetals, 800);
+  }
+  /* ---------- Awakening Flower: Centerpiece with poetic sway ---------- */
+  const flowerCanvas = document.getElementById('flowerCanvas');
+  const fallbackFlower = document.getElementById('fallbackFlower');
+  const cardShell = document.querySelector('.cardShell');
+  const inner = document.querySelector('.cardInner');
+  if(flowerCanvas){
+    console.log('Canvas found—petals prepare!');
+    const fctx = flowerCanvas.getContext('2d');
+    let fcDPR = window.devicePixelRatio||1;
+    let flowerRotation = 0;
+    let sway = 0;
+    let swayDir = 1;
+    let flowerAnimId = null;
+    let introPlayed = false;
+    let yRotation = 0;
+    let targetY = 0;
+    const flowerWrap = flowerCanvas.parentNode;
+    function apply3DRotation(deg, scale = 1) {
+      // Apply rotation and scale directly to canvas, preserving parent's centering
+      flowerCanvas.style.transform = `perspective(600px) rotateY(${deg}deg) scale(${scale})`;
+    }
+    drawFlower(0); // Initial draw
+    function drawFlower(rotation) {
+      const w = 480, h = 480;
+      fctx.clearRect(0, 0, w, h);
+      fctx.save();
+      fctx.translate(w/2, h/2);
+      fctx.rotate(rotation);
+      // Draw stem
+      fctx.beginPath();
+      fctx.moveTo(0, 60);
+      fctx.lineTo(0, 180);
+      fctx.lineWidth = 8;
+      fctx.strokeStyle = '#2d8653';
+      fctx.stroke();
+      // Draw leaves
+      function drawLeaf(angle, size) {
+        fctx.save();
+        fctx.rotate(angle);
+        fctx.beginPath();
+        // More natural leaf shape
+        fctx.moveTo(0, 120);
+        fctx.bezierCurveTo(20, 140, 40, 160, 50, 140);
+        fctx.bezierCurveTo(40, 180, 0, 160, 0, 120);
+        fctx.fillStyle = '#3da065';
+        fctx.fill();
+        fctx.restore();
+      }
+      drawLeaf(-Math.PI/6, 45);
+      drawLeaf(Math.PI/4, 40);
+      // Draw outer petals (more layers, varied colors)
+      const petalColors = [
+        '#ffd1e6', '#ffb3d1', '#ff9fc5', '#ffc4d6',
+        '#ffb6c1', '#ffd6b3', '#ffc4d6', '#ffb3d1'
+      ];
+     
+      // First layer - larger outer petals
+      for(let i = 0; i < 12; i++) {
+        fctx.save();
+        fctx.rotate(i * Math.PI/6 + Math.sin(i) * 0.1);
+        fctx.beginPath();
+       
+        // Custom petal shape using bezier curves
+        fctx.moveTo(0, -40);
+        fctx.bezierCurveTo(30, -70, 30, -100, 0, -120);
+        fctx.bezierCurveTo(-30, -100, -30, -70, 0, -40);
+       
+        fctx.fillStyle = petalColors[i % petalColors.length];
+        fctx.fill();
+        fctx.restore();
+      }
+      // Second layer - medium petals
+      for(let i = 0; i < 8; i++) {
+        fctx.save();
+        fctx.rotate(i * Math.PI/4 + Math.PI/8);
+        fctx.beginPath();
+       
+        // Slightly smaller petals
+        fctx.moveTo(0, -30);
+        fctx.bezierCurveTo(25, -50, 25, -80, 0, -90);
+        fctx.bezierCurveTo(-25, -80, -25, -50, 0, -30);
+       
+        fctx.fillStyle = petalColors[(i + 2) % petalColors.length];
+        fctx.globalAlpha = 0.9;
+        fctx.fill();
+        fctx.restore();
+      }
+      // Inner petals - smallest and most numerous
+      for(let i = 0; i < 16; i++) {
+        fctx.save();
+        fctx.rotate(i * Math.PI/8 + Math.sin(i) * 0.2);
+        fctx.beginPath();
+       
+        // Small inner petals
+        fctx.moveTo(0, -20);
+        fctx.bezierCurveTo(15, -30, 15, -50, 0, -60);
+        fctx.bezierCurveTo(-15, -50, -15, -30, 0, -20);
+       
+        fctx.fillStyle = '#ff8ab2';
+        fctx.globalAlpha = 0.85;
+        fctx.fill();
+        fctx.restore();
+      }
+      // Center detail
+      for(let i = 0; i < 12; i++) {
+        fctx.save();
+        fctx.rotate(i * Math.PI/6);
+        fctx.beginPath();
+        fctx.arc(0, -12, 4, 0, Math.PI*2);
+        fctx.fillStyle = '#ffd76b';
+        fctx.fill();
+        fctx.restore();
+      }
+      fctx.restore();
+    }
+    function resizeFlower(){
+      fcDPR = window.devicePixelRatio||1;
+      flowerCanvas.width = Math.floor(480*fcDPR);
+      flowerCanvas.height = Math.floor(480*fcDPR);
+      flowerCanvas.style.width = '240px';
+      flowerCanvas.style.height = '240px';
+      fctx.setTransform(fcDPR,0,0,fcDPR,0,0);
+      drawFlower(0);
+      // FORCE REPAINT
+      flowerCanvas.style.display = 'none';
+      flowerCanvas.offsetHeight;
+      flowerCanvas.style.display = 'block';
+      console.log('Flower resized & repainted!');
+    }
+    window.addEventListener('resize', resizeFlower);
+    resizeFlower();
+    function flowerIdleLoop(){
+      sway += 0.015*swayDir;
+      if(Math.abs(sway) > 1.2) swayDir *= -1;
+      drawFlower(flowerRotation + Math.sin(sway)*0.015);
+      flowerAnimId = requestAnimationFrame(flowerIdleLoop);
+    }
+    function startFlowerIdle(){
+      if(flowerAnimId) return;
+      console.log('Starting flower idle sway...');
+      flowerAnimId = requestAnimationFrame(flowerIdleLoop);
+    }
+    function stopFlowerIdle(){ 
+      if(flowerAnimId){ 
+        cancelAnimationFrame(flowerAnimId); 
+        flowerAnimId=null; 
+      } 
+    }
+    setTimeout(startFlowerIdle, 100);
+    // Hide fallback once canvas draws
+    setTimeout(() => { if(fallbackFlower) fallbackFlower.style.opacity = '0'; }, 500);
+    // Wire click: Targets canvas OR fallback
+    flowerCanvas.addEventListener('click', () => {
+      console.log('Flower clicked!'); // Debug log
+      if(introPlayed) return;
+      stopFlowerIdle(); // Stop the idle animation
+      flowerRotation = 0; // Reset to initial position
+      yRotation = 0; // Reset Y rotation
+      flowerCanvas.style.transform = ''; // Reset canvas transform to prevent jump
+      let startTime = null;
+      const duration = 5000; // 5 seconds for slower vanish
+      const totalYRotation = 4 * Math.PI; // 2 full turns on Y-axis
+      const initialScale = 1;
+      const maxScale = Math.max(window.innerWidth, window.innerHeight) / 240 * 1.5; // Larger to fully cover screen
+      function animate(currentTime) {
+        if(!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Smooth easing for rotation and growth
+        const eased = easeInOutCubic(progress);
+        const deg = totalYRotation * eased * (180 / Math.PI); // Convert to degrees
+        const scale = initialScale + (maxScale - initialScale) * eased;
+        const opacity = Math.max(0, 1 - (progress * 0.8)); // Slower fade (starts fading later)
+        // Apply combined transform to canvas only
+        apply3DRotation(deg, scale);
+        flowerCanvas.style.opacity = opacity;
+        // Redraw flower with Z rotation for extra spin, starting from 0
+        drawFlower(flowerRotation + progress * Math.PI * 4); // Faster Z spin if desired
+        if(progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // Flower vanishes, start intro sequence
+          flowerCanvas.style.opacity = '0';
+          playClick();
+          setTimeout(() => playIntroSequence(), 500); // Slight delay after full coverage
+        }
+      }
+      requestAnimationFrame(animate);
+    });
+  }
+  function initFireflies() {
+    const container = document.getElementById('fireflies');
+    if(!container) return;
+    for(let i=0; i<15; i++) {
+      const firefly = document.createElement('div');
+      firefly.className = 'firefly';
+      firefly.style.left = rand(0,100) + '%';
+      firefly.style.top = rand(0,100) + '%';
+      firefly.style.animationDelay = rand(0,4) + 's';
+      firefly.style.animationDuration = rand(3,6) + 's';
+      container.appendChild(firefly);
+    }
+  }
+  initFireflies();
+  /* ---------- The Awakening: Flower's dance leads to union ---------- */
+  const introStage = document.getElementById('introStage');
+  const coupleWrap = document.getElementById('coupleWrap');
+  const silG = document.getElementById('silG');
+  const silB = document.getElementById('silB');
+  const toss = document.getElementById('toss');
+  const cardsArea = document.getElementById('cardsArea');
+  let introPlayed = false;
+  function playIntroSequence() {
+    if(introPlayed) return;
+    introPlayed = true;
+    // Show couple silhouettes
+    coupleWrap.style.opacity = '1';
+    setTimeout(() => {
+      silG.style.opacity = '1';
+      silG.style.transform = 'translateY(0) translateX(-12px)';
+      silB.style.opacity = '1'; 
+      silB.style.transform = 'translateY(0) translateX(12px)';
+    }, 120);
+    // Start flower toss animation after a delay
+    setTimeout(() => doGiveFlower(), 800);
+  }
+  // Reusable function to draw flower on any context
+  function drawTossFlower(ctx, rotation = 0, scale = 1) {
+    const w = 480, h = 480;
+    ctx.clearRect(0, 0, w, h);
+    ctx.save();
+    ctx.translate(w/2, h/2);
+    ctx.scale(scale, scale);
+    ctx.rotate(rotation);
+    // Draw stem (scaled down for toss)
+    ctx.beginPath();
+    ctx.moveTo(0, 30); // Shorter stem for toss
+    ctx.lineTo(0, 90);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#2d8653';
+    ctx.stroke();
+    // Draw leaves (simplified)
+    function drawLeaf(angle, size) {
+      ctx.save();
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.moveTo(0, 60);
+      ctx.bezierCurveTo(10, 70, 20, 80, 25, 70);
+      ctx.bezierCurveTo(20, 90, 0, 80, 0, 60);
+      ctx.fillStyle = '#3da065';
+      ctx.fill();
+      ctx.restore();
+    }
+    drawLeaf(-Math.PI/6, 22.5);
+    drawLeaf(Math.PI/4, 20);
+    // Draw outer petals
+    const petalColors = [
+      '#ffd1e6', '#ffb3d1', '#ff9fc5', '#ffc4d6',
+      '#ffb6c1', '#ffd6b3', '#ffc4d6', '#ffb3d1'
+    ];
+    for(let i = 0; i < 12; i++) {
+      ctx.save();
+      ctx.rotate(i * Math.PI/6 + Math.sin(i) * 0.1);
+      ctx.beginPath();
+      ctx.moveTo(0, -20);
+      ctx.bezierCurveTo(15, -35, 15, -50, 0, -60);
+      ctx.bezierCurveTo(-15, -50, -15, -35, 0, -20);
+      ctx.fillStyle = petalColors[i % petalColors.length];
+      ctx.fill();
+      ctx.restore();
+    }
+    // Second layer
+    for(let i = 0; i < 8; i++) {
+      ctx.save();
+      ctx.rotate(i * Math.PI/4 + Math.PI/8);
+      ctx.beginPath();
+      ctx.moveTo(0, -15);
+      ctx.bezierCurveTo(12.5, -25, 12.5, -40, 0, -45);
+      ctx.bezierCurveTo(-12.5, -40, -12.5, -25, 0, -15);
+      ctx.fillStyle = petalColors[(i + 2) % petalColors.length];
+      ctx.globalAlpha = 0.9;
+      ctx.fill();
+      ctx.restore();
+    }
+    // Inner petals
+    for(let i = 0; i < 16; i++) {
+      ctx.save();
+      ctx.rotate(i * Math.PI/8 + Math.sin(i) * 0.2);
+      ctx.beginPath();
+      ctx.moveTo(0, -10);
+      ctx.bezierCurveTo(7.5, -15, 7.5, -25, 0, -30);
+      ctx.bezierCurveTo(-7.5, -25, -7.5, -15, 0, -10);
+      ctx.fillStyle = '#ff8ab2';
+      ctx.globalAlpha = 0.85;
+      ctx.fill();
+      ctx.restore();
+    }
+    // Center
+    for(let i = 0; i < 12; i++) {
+      ctx.save();
+      ctx.rotate(i * Math.PI/6);
+      ctx.beginPath();
+      ctx.arc(0, -6, 2, 0, Math.PI*2);
+      ctx.fillStyle = '#ffd76b';
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+  function doGiveFlower(){
+    playClick();
+    const groomRect = silG.getBoundingClientRect();
+    const brideRect = silB.getBoundingClientRect();
+    // Create tossed flower canvas
+    const tossedCanvas = document.createElement('canvas');
+    tossedCanvas.id = 'tossedFlower';
+    tossedCanvas.width = 480;
+    tossedCanvas.height = 480;
+    const halfSize = 110;
+    tossedCanvas.style.width = '220px';
+    tossedCanvas.style.height = '220px';
+    tossedCanvas.style.position = 'fixed';
+    tossedCanvas.style.borderRadius = '50%';
+    tossedCanvas.style.pointerEvents = 'none';
+    tossedCanvas.style.zIndex = '22';
+    // No box-shadow
+    const tctx = tossedCanvas.getContext('2d');
+    let tossRotation = 0; // No rotation
+    // Initial position at Rajat
+    tossedCanvas.style.left = (groomRect.left + groomRect.width / 2 - halfSize) + 'px';
+    tossedCanvas.style.top = (groomRect.top + groomRect.height / 2 - halfSize) + 'px';
+    tossedCanvas.style.opacity = '0';
+    document.body.appendChild(tossedCanvas);
+    tossedCanvas.style.opacity = '1';
+    // Animate to Kanika with arc and no rotation, slower
+    const startX = groomRect.left + groomRect.width / 2;
+    const startY = groomRect.top + groomRect.height / 2;
+    const endX = brideRect.left + brideRect.width / 2;
+    const endY = brideRect.top + brideRect.height / 2;
+    const start = performance.now();
+    const dur = 2000; // Slower
+    function anim(now){
+      const t = Math.min(1,(now-start)/dur);
+      const ease = easeInOutCubic(t);
+      // Arc path: slight upward curve
+      const midX = (startX + endX) / 2;
+      const controlY = -50; // Upward arc height
+      const x = startX + (endX - startX) * ease;
+      const yCurve = 1 - 4 * (ease * (1 - ease)); // Parabola for arc
+      const y = startY + (endY - startY) * ease + yCurve * controlY;
+      tossedCanvas.style.left = (x - halfSize) + 'px';
+      tossedCanvas.style.top = (y - halfSize) + 'px';
+      // No rotation during flight
+      drawTossFlower(tctx, 0, 1.0); // Fixed rotation 0, full scale
+      if(ease < 1) {
+        requestAnimationFrame(anim);
+      } else {
+        // Fade out at Kanika
+        let fadeStart = now;
+        function fadeOut(current) {
+          const fadeT = Math.min(1, (current - fadeStart) / 500);
+          tossedCanvas.style.opacity = 1 - fadeT;
+          if(fadeT < 1) requestAnimationFrame(fadeOut);
+          else {
+            document.body.removeChild(tossedCanvas);
+            coupleWrap.style.transition = 'opacity 0.6s ease-out';
+            coupleWrap.style.opacity = '0';
+            setTimeout(() => { coupleWrap.style.display = 'none'; }, 800);
+            playSuccess();
+            revealCards();
+          }
+        }
+        requestAnimationFrame(fadeOut);
+      }
+    }
+    requestAnimationFrame(anim);
+  }
+  function revealCards(){
+    introStage.style.transition = 'opacity .8s ease-out'; introStage.style.opacity = '0';
+    setTimeout(()=> introStage.style.display='none', 900);
+    setTimeout(()=> {
+      cardsArea.classList.add('visible');
+      if(startPetals) startPetals();
+    }, 500);
+  }
+  /* ---------- Music's Whisper ---------- */
+  const musicBtn = document.getElementById('musicBtn');
+  if(musicBtn && bgMusic){
+    musicBtn.addEventListener('click', () => {
+      if(bgMusic.paused) {
+        bgMusic.play().catch(e => {});
+        musicBtn.classList.add('playing');
+        musicBtn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="6,18 9,12 6,6" stroke="currentColor" stroke-width="2" fill="none"/><polyline points="15,18 18,12 15,6" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
+      }
+      playClick();
+    });
+  }
+  /* ---------- card data and interactions ---------- */
+  const eventData = {
+  haldi: {
+    img: '', // Boho turmeric glow (2025 trend)
+    subtitle: "Haldi's Golden Embrace",
+    desc: "Beneath sun-kissed boughs, turmeric dances like stardust, awakening laughter in the garden's heart.",
+    date: 'February 11, 2025',
+    time: '10:00 AM',
+    venue: 'Abhinandan Gardens, Jaipur'
+  },
+  mehandi: {
+    img: '', // Rose henna vines (2025 trend)
+    subtitle: "Mehandi's Moonlit Verses",
+    desc: "Henna vines trace tales of tomorrow on tender hands, jasmine whispers secrets to the night.",
+    date: 'February 10, 2025',
+    time: '5:00 PM',
+    venue: 'Bloom Haven, Jaipur'
+  },
+  bhat: {
+    img: '', // Warm family blessings (2025 trend)
+    subtitle: "Bhat's Hearthside Blessings",
+    desc: "Rice falls like gentle rain, binding family threads in sacred hush. Roots deepen, love kindles.",
+    date: 'February 11, 2025',
+    time: '7:00 PM',
+    venue: 'Ancestral Courtyard, Jaipur'
+  },
+  sangeet: {
+    img: '', // Dynamic dance under lights (2025 trend)
+    subtitle: "Sangeet's Starlit Symphony",
+    desc: "Rhythms weave through firefly lights, feet tracing stories in dew-kissed grass.",
+    date: 'December 12, 2025',
+    time: '7:00 PM',
+    venue: 'Rhythm Glade, Jaipur'
+  },
+  wedding: {
+    img: '', // Rose-laden mandap (2025 trend)
+    subtitle: "Wedding's Eternal Vow",
+    desc: "Vows entwine like ivy on ancient stone, two flames merge into luminous dawn.",
+    date: 'December 13, 2025',
+    time: '11:00 AM',
+    venue: 'Moonlit Pavilion, Jaipur'
+  },
+  reception: {
+    img: '', // Crystal-lit revelry (2025 trend)
+    subtitle: "Reception's Petal Revelry",
+    desc: "Crystal toasts catch twilight, dances swirl like autumn leaves in love's gale.",
+    date: 'December 14, 2025',
+    time: '8:00 PM',
+    venue: 'Grand Arbor, Jaipur'
+  }
+};
+  
+  const menuItems = document.querySelectorAll('.menuItem');
+  const heroImg = document.getElementById('heroImg');
+  const cardSubtitle = document.getElementById('cardSubtitle');
+  const cardDesc = document.getElementById('cardDesc');
+  const cardDate = document.getElementById('backEvent');
+  const mapLink = document.getElementById('mapLink');
+  const frontFace = document.querySelector('.cardFace.front');
+  const backFace = document.querySelector('.cardFace.back');
+  
+  let currentKey = 'haldi';
+  function setEvent(key){
+
+    if(!eventData[key]) return;
+    currentKey = key;
+    const d = eventData[key];
+    if(heroImg) heroImg.src = d.img;
+    if(heroImg) heroImg.alt = `A glimpse of ${d.subtitle.toLowerCase()}`;
+    if(cardSubtitle) cardSubtitle.textContent = d.subtitle;
+    if(cardDesc) cardDesc.innerHTML = d.desc.replace(/\n/g, '<br>');
+    if(cardDate) cardDate.textContent = `${d.date} at ${d.time} • ${d.venue}`;
+    if(mapLink) mapLink.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(d.venue + ', Jaipur');
+    if(inner) inner.classList.remove('is-flipped');
+    playClick();
+    if(startPetals) setTimeout(startPetals, 300);
+  }
+  menuItems.forEach(mi=>{
+    mi.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const k = mi.dataset.key;
+      setEvent(k);
+
+    frontFace.style.display = 'flex';
+    backFace.style.display = 'none';
+    frontFace.setAttribute('aria-hidden', 'false');
+    backFace.setAttribute('aria-hidden', 'true');
+
+    const isFlipped = inner.classList.contains('is-flipped');
+    if(isFlipped) {
+    inner.classList.toggle('flipped');
+    }
+
+    });
+  });
+  setEvent('haldi');
+  /* ---------- Flip the Petal: Reveal the Vow ---------- */
+  
+
+
+
+backFace.setAttribute('style', 'display: none;');
+
+if (cardShell && inner && frontFace && backFace) {
+  const handleCardClick = (e) => {
+    // Robust selector for ALL interactive elements (including nested)
+    const interactiveSelectors = 'input, textarea, a, button, .btn, .mapLink, label';
+    const isInteractive = e.target.matches(interactiveSelectors) || e.target.closest(interactiveSelectors);
+    
+    if (isInteractive) {
+      console.log('Interactive element clicked—allowing default behavior (no flip)');
+      e.stopPropagation();  // Prevent bubbling to cardShell (no flip)
+      return;  // Let the element do its thing (link opens, button submits, etc.)
+    }
+    
+    // Non-interactive: Flip the card
+    e.preventDefault();  // Stop any default (e.g., mobile scroll)
+    e.stopPropagation();  // Isolate to card
+    inner.classList.toggle('is-flipped');
+    
+    const isFlipped = inner.classList.contains('is-flipped');
+    frontFace.style.display = isFlipped ? 'none' : 'flex';
+    backFace.style.display = isFlipped ? 'flex' : 'none';
+
+    console.log('Manual flip triggered on non-interactive area!');
+    playClick();  // Audio/haptic feedback
+  };
+  
+  // Desktop/mouse clicks (bubble phase)
+  cardShell.addEventListener('click', handleCardClick, false);
+  
+  // Mobile/touch (prevents delay and interference)
+  cardShell.addEventListener('touchend', handleCardClick, { passive: false });
+  
+  // Optional: Keyboard support for accessibility (Enter/Space on card)
+  cardShell.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCardClick(e);
+    }
+  });
+}
+  
+  /* ---------- Seal the Whisper: RSVP in the Garden's Memory ---------- */
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const rname = document.getElementById('rname');
+  const rguests = document.getElementById('rguests');
+  const rmsg = document.getElementById('rmsg');
+  const rsvpStatus = document.getElementById('rsvpStatus');
+  if(rsvpBtn){
+    rsvpBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      playClick();
+      const name = (rname ? rname.value : '').trim();
+      if(!name){ if(rsvpStatus) rsvpStatus.textContent = 'Share your name, like a petal in the wind.'; return; }
+      const attend = document.querySelector('input[name="attend"]:checked')?.value || 'yes';
+      const guests = Math.max(0, parseInt(rguests ? rguests.value : '0',10));
+      const msg = (rmsg ? rmsg.value : '').trim();
+      const records = JSON.parse(localStorage.getItem('garden_rsvps')||'[]');
+      records.push({ id:Date.now(), event: currentKey, name, attend, guests, msg, timestamp: new Date().toISOString() });
+      localStorage.setItem('garden_rsvps', JSON.stringify(records));
+      if(rsvpStatus) rsvpStatus.innerHTML = 'Your petal is planted — thank you for blooming with us! 🌸';
+      playSuccess();
+      if(startPetals) startPetals();
+      setTimeout(()=>{
+        if(rsvpStatus) rsvpStatus.textContent='';
+        if(rname) rname.value='';
+        if(rguests) rguests.value='0';
+        if(rmsg) rmsg.value='';
+      }, 3000);
+    });
+  }
+  /* ---------- Garden's Breeze: Keyboard Waltz ---------- */
+  document.addEventListener('keydown', (e)=>{
+    const keys = Object.keys(eventData);
+    let idx = keys.indexOf(currentKey);
+    if(e.key === 'ArrowRight'){ idx = (idx+1)%keys.length; setEvent(keys[idx]); }
+    if(e.key === 'ArrowLeft'){ idx = (idx-1+keys.length)%keys.length; setEvent(keys[idx]); }
+  });
+  /* ---------- Responsive Petals for the SMA Cluster ---------- */
+  (function adjustSMA(){
+    const el = document.getElementById('smaFlower');
+    if(!el) return;
+    function onResize(){
+      if(window.innerWidth < 640){ el.style.left = '5vw'; el.style.top = '10vh'; el.style.transform = 'scale(0.9)'; }
+      else { el.style.left = '10vw'; el.style.top = '20vh'; el.style.transform = 'scale(1)'; }
+    }
+    window.addEventListener('resize', onResize); onResize();
+  })();
+  /* ---------- Initial Grace: Lovers in Waiting ---------- */
+  setTimeout(()=>{
+    if(silG) silG.style.transform='translateY(30px) translateX(-50px)';
+    if(silB) silB.style.transform='translateY(30px) translateX(50px)';
+  }, 300);
+ 
+  console.log('Garden fully awakened! 🌸');
+}
+);
+</script>
+</body>
+
+</html>
