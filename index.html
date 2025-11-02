@@ -589,33 +589,23 @@ function easeInOutCubic(t){ return t<.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1; }
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Garden stirs—DOM ready! 🌸');
   /* ---------- Autoplay Music ---------- */
-  const bgMusic = document.getElementById('bgMusic');
+ const bgMusic = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
 
-// Try autoplay first
+// Try to autoplay (some browsers allow it if muted or previously granted)
 if (bgMusic) {
-  bgMusic.play().then(() => {
-    console.log('Autoplay succeeded');
-    if (musicBtn) musicBtn.classList.add('playing');
-  }).catch(err => {
-    console.log('Autoplay prevented, waiting for user interaction...', err);
-
-    // Wait for the first user gesture (click/touch/key)
-    const resumeAudio = () => {
-      bgMusic.play().then(() => {
-        console.log('Music started after user interaction');
-        if (musicBtn) musicBtn.classList.add('playing');
-      }).catch(e => console.log('Still blocked:', e));
-
-      // Remove listeners after the first trigger
-      document.removeEventListener('click', resumeAudio);
-      document.removeEventListener('touchstart', resumeAudio);
-      document.removeEventListener('keydown', resumeAudio);
+  bgMusic.play().catch(() => {
+    // Silently wait for first interaction if blocked
+    const startMusic = () => {
+      bgMusic.play().catch(() => {}); // try again
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+      document.removeEventListener('keydown', startMusic);
     };
 
-    document.addEventListener('click', resumeAudio);
-    document.addEventListener('touchstart', resumeAudio);
-    document.addEventListener('keydown', resumeAudio);
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+    document.addEventListener('keydown', startMusic);
   });
 }
 
@@ -639,7 +629,7 @@ if (musicBtn && bgMusic) {
         </svg>`;
     }
 
-    // Optional: play click sound (ensure playClick() is safe)
+    // Safe playClick() call — only runs after user gesture
     if (typeof playClick === 'function') playClick();
   });
 }
